@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=8">
+<link rel="stylesheet" href="assets/css/styles.css?v=9">
 <script>document.documentElement.classList.add('js');</script>
 
 <!-- Mejoras progresivas (si algún CDN falla, la página sigue funcionando) -->
@@ -150,66 +150,57 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2>La evolución</h2>
-        <p>De un programa nuevo en 2023 a más de un millón de visualizaciones por mes.</p>
+        <p>De un programa nuevo en 2023 a más de un millón de visualizaciones por mes. Deslizá para recorrerla.</p>
       </div>
-      <ol class="timeline reveal">
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">Septiembre 2023</span>
-          <div class="tl-body">
+      <div class="tl-h">
+        <button class="tl-arrow tl-prev" type="button" aria-label="Hito anterior">&#8249;</button>
+        <button class="tl-arrow tl-next" type="button" aria-label="Hito siguiente">&#8250;</button>
+        <div class="tl-track" tabindex="0">
+          <span class="tl-line" aria-hidden="true"><span class="tl-line-fill"></span></span>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">Septiembre 2023</span>
             <h3>El comienzo</h3>
             <p>El 27 de septiembre sale el primer programa por la pantalla de 1.21 Más. Tres adolescentes terminando el colegio, sin experiencia y sin saber si iban a tener audiencia.</p>
-          </div>
-        </li>
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">Fines de 2023</span>
-          <div class="tl-body">
+          </article>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">Fines de 2023</span>
             <h3>El punto de inflexión</h3>
             <p>A tres meses del debut, un programa especial en la cancha de Gimnasia. Ahí entendieron hasta dónde podía llegar el proyecto.</p>
-          </div>
-        </li>
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">2024</span>
-          <div class="tl-body">
+          </article>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">2024</span>
             <h3>Consolidación y viralidad</h3>
             <p>Dejó de ser un hobby: entrevistas, invitados, programas más grandes y videos que explotaron en redes. Hasta llegaron a la televisión.</p>
-          </div>
-        </li>
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">2025</span>
-          <div class="tl-body">
+          </article>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">2025</span>
             <h3>Impacto y expansión</h3>
             <p>Universidades, radios y otros espacios de streaming. Cobertura de eventos y entrevistas a artistas.</p>
-          </div>
-        </li>
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">Febrero 2026</span>
-          <div class="tl-body">
+          </article>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">Febrero 2026</span>
             <h3>Fin de una etapa</h3>
             <p>Cierra el ciclo en el estudio de 1.21 Más, donde el equipo creció y aprendió.</p>
-          </div>
-        </li>
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">Marzo 2026</span>
-          <div class="tl-body">
+          </article>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">Marzo 2026</span>
             <h3>Nueva casa</h3>
             <p>Giro 360 se suma a la grilla de 0221comar, los martes y jueves de 16 a 18 h.</p>
-          </div>
-        </li>
-        <li class="tl-item">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <span class="tl-year">Hoy</span>
-          <div class="tl-body">
+          </article>
+          <article class="tl-card">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-year">Hoy</span>
             <h3>+1,1 M de visualizaciones por mes</h3>
             <p>Contenido en vivo y en clips, distribuido en Instagram, TikTok, YouTube y X.</p>
-          </div>
-        </li>
-      </ol>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -620,7 +611,7 @@
 
 <a href="#contacto" class="fab" id="fab" aria-label="Ir a contacto">Contacto</a>
 
-<script src="assets/js/main.js?v=4" defer></script>
-<script src="assets/js/enhance.js?v=2" defer></script>
+<script src="assets/js/main.js?v=5" defer></script>
+<script src="assets/js/enhance.js?v=3" defer></script>
 </body>
 </html>

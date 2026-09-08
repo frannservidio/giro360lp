@@ -217,25 +217,40 @@ section{padding:110px 0;}
 .segment.pol{--seg:var(--onair);}
 .segment.mus{--seg:var(--yellow);}
 
-/* LÍNEA DE TIEMPO ------------------------------------------------------- */
-.timeline{list-style:none; margin:0; padding:0; max-width:720px; position:relative; --tl-fill:100%;}
-.timeline::before,
-.timeline::after{content:''; position:absolute; left:0; top:5px; width:2px; border-radius:2px;}
-.timeline::before{bottom:5px; background:var(--line);}
-.timeline::after{height:var(--tl-fill); max-height:calc(100% - 10px); background:linear-gradient(var(--violet), var(--yellow));}
-.tl-item{position:relative; padding:0 0 34px 32px;}
-.tl-item:last-child{padding-bottom:0;}
+/* LÍNEA DE TIEMPO (horizontal) --------------------------------------- */
+.tl-h{position:relative; margin-top:12px;}
+.tl-track{
+  position:relative; display:flex; overflow-x:auto; scroll-snap-type:x proximity;
+  padding:0 0 10px; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+}
+.tl-track::-webkit-scrollbar{display:none;}
+.tl-track:focus-visible{outline:2px solid var(--violet); outline-offset:4px; border-radius:12px;}
+.tl-line{position:absolute; top:46px; left:0; height:2px; background:var(--line); pointer-events:none;}
+.tl-line-fill{position:absolute; top:0; left:0; height:100%; width:0; background:linear-gradient(90deg,var(--violet),var(--yellow));}
+.tl-card{
+  flex:0 0 clamp(228px, 76vw, 286px); scroll-snap-align:center;
+  padding:62px 26px 0 0; position:relative;
+}
 .tl-dot{
-  position:absolute; left:-7px; top:3px; width:14px; height:14px; border-radius:50%;
+  position:absolute; top:39px; left:0; width:15px; height:15px; border-radius:50%;
   background:var(--violet); box-shadow:0 0 0 4px var(--ink); z-index:1;
 }
-.tl-item:last-child .tl-dot{background:var(--yellow);}
-.tl-year{
-  display:inline-block; font-family:'Baloo 2'; font-weight:800;
-  color:var(--yellow); font-size:1.05rem; margin-bottom:4px;
+.tl-card:last-child .tl-dot{background:var(--yellow);}
+.tl-year{display:block; font-family:'Baloo 2'; font-weight:800; color:var(--yellow); font-size:1rem; margin-bottom:4px;}
+.tl-card h3{font-size:1.12rem; color:var(--paper); font-weight:700; margin-bottom:6px;}
+.tl-card p{color:var(--slate); font-size:0.92rem;}
+.tl-arrow{
+  position:absolute; top:46px; transform:translateY(-50%); z-index:4;
+  width:40px; height:40px; border-radius:50%; border:1px solid var(--line);
+  background:var(--ink-soft); color:var(--paper); font-size:1.3rem; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.4);
+  transition:background .2s, border-color .2s, opacity .2s;
 }
-.tl-body h3{font-size:1.15rem; color:var(--paper); font-weight:700; margin-bottom:6px;}
-.tl-body p{color:var(--slate); font-size:0.95rem; max-width:52ch;}
+.tl-arrow:hover{background:var(--violet); border-color:var(--violet);}
+.tl-prev{left:-6px;}
+.tl-next{right:-6px;}
+.tl-arrow[disabled]{opacity:0; pointer-events:none;}
+@media (max-width:640px){ .tl-arrow{display:none;} }
 
 /* GALERÍA / EL PROGRAMA ------------------------------------------------- */
 .gallery{display:grid; gap:12px; grid-template-columns:repeat(4,1fr);}

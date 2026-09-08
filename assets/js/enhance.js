@@ -40,25 +40,18 @@
     var gsap = window.gsap;
     gsap.registerPlugin(window.ScrollTrigger);
 
-    // Timeline: la línea "se dibuja" y los hitos entran uno a uno
-    var tl = document.querySelector('.timeline');
-    if (tl) {
-      var items = tl.querySelectorAll('.tl-item');
-      gsap.set(items, { opacity: 0, x: -18 });
-      window.ScrollTrigger.batch(items, {
-        start: 'top 85%',
+    // Timeline horizontal: los hitos entran en cascada al aparecer
+    var tlCards = document.querySelectorAll('.tl-card');
+    if (tlCards.length) {
+      gsap.set(tlCards, { opacity: 0, y: 24 });
+      window.ScrollTrigger.batch(tlCards, {
+        start: 'top 90%',
         onEnter: function (els) {
-          gsap.to(els, { opacity: 1, x: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out', overwrite: true });
+          gsap.to(els, { opacity: 1, y: 0, duration: 0.5, stagger: 0.09, ease: 'power2.out', overwrite: true });
         }
       });
       // Red de seguridad: si algo falla, mostrarlos igual
-      setTimeout(function () { gsap.set(items, { opacity: 1, x: 0 }); }, 3500);
-      var fill = { v: 0 };
-      gsap.to(fill, {
-        v: 100, ease: 'none',
-        scrollTrigger: { trigger: tl, start: 'top 78%', end: 'bottom 55%', scrub: true },
-        onUpdate: function () { tl.style.setProperty('--tl-fill', fill.v + '%'); }
-      });
+      setTimeout(function () { gsap.set(tlCards, { opacity: 1, y: 0 }); }, 3500);
     }
 
     // Parallax sutil en las manchas del hero

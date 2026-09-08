@@ -144,6 +144,49 @@
     }
   });
 
+  /* --- Línea de tiempo horizontal: flechas + arrastre + rail que se llena --- */
+  Array.prototype.forEach.call(document.querySelectorAll('.tl-h'), function (box) {
+    var track = box.querySelector('.tl-track');
+    var line = box.querySelector('.tl-line');
+    var fill = box.querySelector('.tl-line-fill');
+    var prev = box.querySelector('.tl-prev');
+    var next = box.querySelector('.tl-next');
+    if (!track) return;
+
+    var cardW = function () {
+      var c = track.querySelector('.tl-card');
+      return c ? c.getBoundingClientRect().width : 280;
+    };
+    var sync = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      if (fill) fill.style.width = Math.min(track.scrollLeft + track.clientWidth / 2, track.scrollWidth) + 'px';
+      if (prev) prev.disabled = track.scrollLeft <= 4;
+      if (next) next.disabled = track.scrollLeft >= max - 4;
+    };
+    var layout = function () {
+      if (line) line.style.width = track.scrollWidth + 'px';
+      sync();
+    };
+    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -cardW(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { track.scrollBy({ left: cardW(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', layout);
+    layout();
+    window.setTimeout(layout, 600); // por si el layout cambia al cargar fuentes
+
+    // arrastrar con el mouse
+    var down = false, startX = 0, startL = 0;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      down = true; startX = e.clientX; startL = track.scrollLeft;
+      track.style.cursor = 'grabbing';
+    });
+    window.addEventListener('pointerup', function () { down = false; track.style.cursor = ''; });
+    window.addEventListener('pointermove', function (e) {
+      if (down) track.scrollLeft = startL - (e.clientX - startX);
+    });
+  });
+
   /* --- En vivo: transmisión de 0221comar / última emisión de Giro 360 --- */
   (function () {
     var frame = document.getElementById('live-frame');
