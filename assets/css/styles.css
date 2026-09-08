@@ -135,13 +135,16 @@ nav.wrap{display:flex; align-items:center; justify-content:space-between; height
 .btn-ghost:hover{border-color:var(--paper); transform:translateY(-2px);}
 
 /* STAT STRIP --------------------------------------------------------------- */
-.stats{border-bottom:1px solid var(--line);}
-.stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:0;}
-.stat{padding:38px 0; border-left:1px solid var(--line);}
-.stat:first-child{border-left:none;}
-.stat .num{font-family:'Baloo 2'; font-weight:800; font-size:clamp(1.7rem, 3.2vw, 2.5rem); color:var(--yellow); line-height:1; word-break:break-word;}
-.stat .num.num--word{font-size:clamp(1.4rem, 2.4vw, 1.9rem);}
-.stat .lbl{font-size:0.85rem; color:var(--slate); margin-top:6px;}
+.stats{background:var(--ink-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:34px 0;}
+.stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.stat{
+  background:var(--ink); border:1px solid var(--line); border-radius:16px;
+  padding:22px 20px; display:flex; flex-direction:column; gap:6px;
+}
+.stat::before{content:''; width:26px; height:3px; border-radius:3px; background:var(--violet); margin-bottom:8px;}
+.stat .num{font-family:'Baloo 2'; font-weight:800; font-size:clamp(1.7rem, 3vw, 2.3rem); color:var(--yellow); line-height:1; word-break:break-word;}
+.stat .num.num--word{font-size:clamp(1.3rem, 2.3vw, 1.8rem);}
+.stat .lbl{font-size:0.82rem; color:var(--slate); line-height:1.35;}
 
 /* SECCIONES GENÉRICAS --------------------------------------------------- */
 section{padding:110px 0;}
@@ -204,6 +207,22 @@ section{padding:110px 0;}
 .segment.tec{--seg:var(--violet);}
 .segment.pol{--seg:var(--onair);}
 .segment.mus{--seg:var(--yellow);}
+
+/* LÍNEA DE TIEMPO ------------------------------------------------------- */
+.timeline{list-style:none; margin:0; padding:0; max-width:720px;}
+.tl-item{position:relative; padding:0 0 34px 32px; border-left:2px solid var(--line);}
+.tl-item:last-child{border-left-color:transparent; padding-bottom:0;}
+.tl-dot{
+  position:absolute; left:-8px; top:3px; width:14px; height:14px; border-radius:50%;
+  background:var(--violet); box-shadow:0 0 0 4px var(--ink);
+}
+.tl-item:last-child .tl-dot{background:var(--yellow);}
+.tl-year{
+  display:inline-block; font-family:'Baloo 2'; font-weight:800;
+  color:var(--yellow); font-size:1.05rem; margin-bottom:4px;
+}
+.tl-body h3{font-size:1.15rem; color:var(--paper); font-weight:700; margin-bottom:6px;}
+.tl-body p{color:var(--slate); font-size:0.95rem; max-width:52ch;}
 
 /* GALERÍA / EL PROGRAMA ------------------------------------------------- */
 .gallery{display:grid; gap:12px; grid-template-columns:repeat(4,1fr);}
@@ -409,7 +428,6 @@ footer{padding:30px 0; text-align:center; font-size:0.82rem; color:#8a857b; back
   .steps{grid-template-columns:1fr;}
   .member{flex-basis:calc((100% - 28px) / 2);}
   .stats .wrap{grid-template-columns:repeat(2,1fr);}
-  .stat:nth-child(3){border-left:none;}
   section{padding:84px 0;}
 }
 @media (max-width:520px){
@@ -418,4 +436,5 @@ footer{padding:30px 0; text-align:center; font-size:0.82rem; color:#8a857b; back
   .brand-tile{min-height:0; padding:32px 24px;}
   .videos-grid{grid-template-columns:1fr;}
   .member{flex-basis:100%;}
+  .stats .wrap{grid-template-columns:1fr;}
 }
