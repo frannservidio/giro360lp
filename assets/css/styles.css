@@ -217,6 +217,23 @@ section{padding:110px 0;}
 .segment.pol{--seg:var(--onair);}
 .segment.mus{--seg:var(--yellow);}
 
+/* FORMATOS --------------------------------------------------------------- */
+.formats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+.format{
+  border:1px solid var(--line); border-radius:16px; padding:28px 26px;
+  background:var(--ink); transition:transform .18s, border-color .2s;
+}
+.format:hover{transform:translateY(-4px); border-color:rgba(245,241,232,0.28);}
+.format-tag{
+  display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--violet);
+  border:1px solid var(--violet-dim); border-radius:40px; padding:3px 10px; margin-bottom:14px;
+}
+.format h3{font-size:1.15rem; color:var(--paper); font-weight:700; margin-bottom:8px;}
+.format p{color:var(--slate); font-size:0.93rem;}
+@media (max-width:900px){ .formats{grid-template-columns:1fr 1fr;} }
+@media (max-width:560px){ .formats{grid-template-columns:1fr;} }
+
 /* LÍNEA DE TIEMPO (horizontal) --------------------------------------- */
 .tl-h{position:relative; margin-top:12px;}
 .tl-track{
