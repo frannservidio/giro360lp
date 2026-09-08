@@ -14,8 +14,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=7">
+<link rel="stylesheet" href="assets/css/styles.css?v=8">
 <script>document.documentElement.classList.add('js');</script>
+
+<!-- Mejoras progresivas (si algún CDN falla, la página sigue funcionando) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -32,6 +37,7 @@
       </svg>
     </button>
     <div class="navlinks" id="menu">
+      <a href="#vivo" class="nav-live">En vivo</a>
       <a href="#sobre">Nosotros</a>
       <a href="#segmentos">Segmentos</a>
       <a href="#trabajamos">Cómo Trabajamos</a>
@@ -55,20 +61,41 @@
       <h1>Tu marca, en el centro de <em>la conversación platense</em></h1>
       <p>Integramos marcas al programa en vivo y producimos contenido a medida —dentro y fuera del estudio— que circula en Instagram, TikTok, YouTube y X.</p>
       <div class="hero-actions">
-        <a href="#marcas" class="btn btn-primary">Ver marcas que confían</a>
-        <a href="#contacto" class="btn btn-ghost">Coordinar una reunión</a>
+        <a href="#contacto" class="btn btn-primary">Coordiná una reunión</a>
+        <a href="#marcas" class="btn btn-ghost">Ver marcas que confían</a>
       </div>
     </div>
   </section>
 
   <div class="stats">
     <div class="wrap">
-      <div class="stat"><div class="num">2023</div><div class="lbl">En vivo desde</div></div>
-      <div class="stat"><div class="num">37,1&nbsp;mil</div><div class="lbl">Seguidores en Instagram</div></div>
-      <div class="stat"><div class="num">4</div><div class="lbl">Plataformas de distribución</div></div>
+      <div class="stat"><div class="num" data-count-to="2023">2023</div><div class="lbl">En vivo desde</div></div>
+      <div class="stat"><div class="num" data-count-to="37.1" data-count-dec="1" data-count-suffix=" mil">37,1&nbsp;mil</div><div class="lbl">Seguidores en Instagram</div></div>
+      <div class="stat"><div class="num" data-count-to="4">4</div><div class="lbl">Plataformas de distribución</div></div>
       <div class="stat"><div class="num num--word">0221comar</div><div class="lbl">El medio donde sale en vivo</div></div>
     </div>
   </div>
+
+  <section id="vivo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>En vivo</h2>
+        <p>Giro 360 sale en vivo los <strong>martes y jueves de 16 a 18 h</strong> por 0221comar. Acá lo mirás en directo, y el resto de la semana queda la última emisión.</p>
+      </div>
+      <div class="live-wrap reveal">
+        <div class="live-frame" id="live-frame" data-channel="https://www.youtube.com/c/0221comar">
+          <div class="live-placeholder" id="live-placeholder">
+            <span class="live-badge" id="live-badge">Cargando la transmisión…</span>
+            <a class="btn btn-ghost" href="https://www.youtube.com/c/0221comar" target="_blank" rel="noopener">Ver el canal en YouTube</a>
+          </div>
+        </div>
+        <div class="live-meta">
+          <span class="live-status" id="live-status">Martes y jueves · 16 a 18 h</span>
+          <a href="https://www.youtube.com/c/0221comar" target="_blank" rel="noopener">Canal de 0221comar &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="audiencia" class="band">
     <div class="wrap">
@@ -77,10 +104,10 @@
         <p>Datos de Instagram (@giro360lp), últimos 30 días. El contenido también se distribuye en TikTok, YouTube y X.</p>
       </div>
       <div class="aud-figures reveal">
-        <div class="aud-fig"><div class="n">1,1 M</div><div class="l">Visualizaciones por mes</div></div>
-        <div class="aud-fig"><div class="n">585 mil</div><div class="l">Cuentas alcanzadas por mes</div></div>
-        <div class="aud-fig"><div class="n">93%</div><div class="l">Del alcance son cuentas que no nos siguen</div></div>
-        <div class="aud-fig"><div class="n">2,9 M</div><div class="l">Visualizaciones en los últimos 90 días</div></div>
+        <div class="aud-fig"><div class="n" data-count-to="1.1" data-count-dec="1" data-count-suffix=" M">1,1 M</div><div class="l">Visualizaciones por mes</div></div>
+        <div class="aud-fig"><div class="n" data-count-to="585" data-count-suffix=" mil">585 mil</div><div class="l">Cuentas alcanzadas por mes</div></div>
+        <div class="aud-fig"><div class="n" data-count-to="93" data-count-suffix="%">93%</div><div class="l">Del alcance son cuentas que no nos siguen</div></div>
+        <div class="aud-fig"><div class="n" data-count-to="2.9" data-count-dec="1" data-count-suffix=" M">2,9 M</div><div class="l">Visualizaciones en los últimos 90 días</div></div>
       </div>
       <div class="aud-demo reveal">
         <div class="aud-block">
@@ -558,10 +585,25 @@
     </div>
   </section>
 
+  <section id="seguinos">
+    <div class="wrap follow reveal">
+      <p class="follow-title">¿Nos escuchás? Seguí a Giro 360</p>
+      <div class="follow-links">
+        <a href="https://instagram.com/giro360lp" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@giro360lp" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.youtube.com/c/0221comar" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://linktr.ee/giro360lp" target="_blank" rel="noopener">Todos los links</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>Giro 360 — La Plata, Argentina · En vivo por 0221comar</footer>
 
-<script src="assets/js/main.js?v=3" defer></script>
+<a href="#contacto" class="fab" id="fab" aria-label="Ir a contacto">Contacto</a>
+
+<script src="assets/js/main.js?v=4" defer></script>
+<script src="assets/js/enhance.js?v=2" defer></script>
 </body>
 </html>

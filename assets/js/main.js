@@ -144,6 +144,91 @@
     }
   });
 
+  /* --- En vivo: transmisión de 0221comar / última emisión de Giro 360 --- */
+  (function () {
+    var frame = document.getElementById('live-frame');
+    if (!frame) return;
+    var badge = document.getElementById('live-badge');
+    var status = document.getElementById('live-status');
+
+    var esES = function (dateStr) {
+      try {
+        return new Date(dateStr).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+      } catch (e) { return ''; }
+    };
+    // Hora de Buenos Aires (UTC-3, sin horario de verano)
+    var buenosAiresNow = function () {
+      var d = new Date();
+      return new Date(d.getTime() + d.getTimezoneOffset() * 60000 - 3 * 3600000);
+    };
+    var enFranja = function () {
+      var d = buenosAiresNow(), day = d.getDay(), h = d.getHours();
+      return (day === 2 || day === 4) && h >= 16 && h < 18;
+    };
+    var proximoVivo = function () {
+      var d = buenosAiresNow(), day = d.getDay();
+      // días hasta el próximo martes(2) o jueves(4)
+      var opts = [2, 4].map(function (t) { return (t - day + 7) % 7; });
+      var min = Math.min.apply(null, opts.filter(function (x) { return x > 0 || (x === 0 && d.getHours() < 16); }));
+      if (day === 2 || day === 4) { if (d.getHours() < 16) min = 0; }
+      if (min === 0) return 'hoy 16 h';
+      if (min === 1) return 'mañana 16 h';
+      return 'en ' + min + ' días';
+    };
+
+    var embed = function (id) {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0';
+      f.title = 'Giro 360';
+      f.loading = 'lazy';
+      f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      f.setAttribute('allowfullscreen', '');
+      frame.innerHTML = '';
+      frame.appendChild(f);
+    };
+
+    var fallback = function () {
+      if (badge) {
+        badge.textContent = enFranja()
+          ? 'Estamos al aire — miralo en YouTube'
+          : 'Próximo vivo: ' + proximoVivo() + ' · miralo en YouTube';
+      }
+    };
+
+    fetch('/api/live', { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.videoId) { fallback(); return; }
+        embed(d.videoId);
+        if (d.mode === 'live') {
+          frame.classList.add('is-live');
+          if (status) { status.textContent = 'En vivo ahora'; status.classList.add('on'); }
+        } else if (status) {
+          status.textContent = d.publishedAt ? ('Última emisión · ' + esES(d.publishedAt)) : 'Última emisión';
+        }
+      })
+      .catch(fallback);
+  })();
+
+  /* --- Botón flotante de Contacto (mobile) ------------------------- */
+  (function () {
+    var fab = document.getElementById('fab');
+    var contacto = document.getElementById('contacto');
+    if (!fab) return;
+    var sync = function () {
+      var pastHero = window.scrollY > 480;
+      var contactoVisible = false;
+      if (contacto) {
+        var r = contacto.getBoundingClientRect();
+        contactoVisible = r.top < window.innerHeight && r.bottom > 0;
+      }
+      fab.classList.toggle('show', pastHero && !contactoVisible);
+    };
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+  })();
+
   /* --- Link activo en el nav según la sección visible --------------- */
   var sections = links
     .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
