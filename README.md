@@ -57,10 +57,21 @@ No necesita build:
 `styles.css` y `main.js` se cargan con `?v=N` para evitar cache viejo al iterar.
 Subí ese número cuando cambies esos archivos (o dejalo, no molesta en producción).
 
-## Deploy
+## Deploy (Vercel)
 
-Subir la carpeta tal cual a cualquier hosting estático: GitHub Pages, Netlify,
-Vercel, Cloudflare Pages. No hay backend.
+Repo: https://github.com/frannservidio/giro360lp
+
+Sitio 100% estático, sin build ni backend. Una sola vez:
+
+1. En vercel.com → **Add New → Project → Import** `frannservidio/giro360lp`.
+2. Framework Preset: **Other**. Build Command y Output Directory: **vacíos**.
+   Root Directory: `.`
+3. **Deploy**.
+
+Después, cada `git push` a `main` redeploya solo.
+
+Para cambiar contenido: editás los archivos, `git add -A && git commit -m "..."
+&& git push`. Ver en local con `python serve.py` antes de pushear.
 
 ## Pendientes
 
