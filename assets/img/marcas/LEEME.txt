@@ -1,0 +1,17 @@
+Guardá acá el logo de cada marca en PNG (fondo transparente ideal), con estos nombres exactos:
+
+  redbull.png          Red Bull
+  hotelsancarlos.png   Hotel San Carlos
+  skala.png            Skala Areco
+  cerdorojo.png        Cerdo Rojo Charcutería
+  buffetero.png        El Buffetero
+  arcosdefutbol.png    Arcos de Fútbol La Plata
+  maxikiosco44.png     Maxikiosco 44
+  gaamdrako.png        Gaam Drako
+  nomadecrew.png       Nómade Crew
+  silvershowroom.png   The Silver Showroom
+  laplenafiesta.png    La Plena Fiesta
+  floydpool.png        Floyd Pool
+
+Cada logo se muestra sobre un recuadro blanco. Si falta un archivo, la tarjeta muestra solo el nombre en texto (no se rompe nada).
+Podés bajar la foto de perfil desde Instagram, pero si tenés el logo real en PNG queda mucho mejor.

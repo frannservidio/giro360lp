@@ -1,0 +1,5 @@
+Fotos del equipo (ya cargadas y optimizadas a 800px):
+  sofi.jpg  fran.jpg  thiago.jpg  carolina.jpg  santino.jpg
+
+Los originales full-res estan en ..\Giro360-fotos-originales\ (fuera del proyecto).
+Para cambiar una foto: reemplazá el .jpg con el mismo nombre (ideal vertical 4:5, ~800px de ancho).
