@@ -11,7 +11,7 @@
 
 var CHANNEL_ID = 'UCWFylKzypM2c1aRt5SImiuQ'; // youtube.com/c/0221comar
 var MATCH = /giro\s*-?\s*360/i;
-var FALLBACK_VIDEO_ID = ''; // opcional: ID de un programa completo de Giro 360 (último recurso)
+var FALLBACK_VIDEO_ID = 'q1V-Ma7f6qI'; // último recurso: un programa completo de Giro 360
 
 var UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
@@ -60,9 +60,8 @@ async function checkLive() {
   if (!pr || !pr.videoDetails) return null;
   var vd = pr.videoDetails;
   var status = pr.playabilityStatus && pr.playabilityStatus.status;
-  var isLive = vd.isLive === true ||
-    (pr.playabilityStatus && pr.playabilityStatus.liveStreamability != null);
-  if (isLive && status === 'OK' && MATCH.test(vd.title || '')) {
+  // Sólo "en vivo" de verdad (no cuenta un estreno programado / isUpcoming)
+  if (vd.isLive === true && status === 'OK' && MATCH.test(vd.title || '')) {
     return { mode: 'live', videoId: vd.videoId, title: vd.title };
   }
   return null;
