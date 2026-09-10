@@ -55,28 +55,50 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* --- Casos en video: fachada + clic para reproducir --------------- */
-  Array.prototype.forEach.call(document.querySelectorAll('.videocard[data-url]'), function (card) {
-    card.addEventListener('click', function () {
-      var url = (card.getAttribute('data-url') || '').trim();
-      if (!url || url.indexOf('REEMPLAZAR') !== -1) return;   // placeholder sin completar
+  /* --- Casos en video: abrir el reel en un modal -------------------- */
+  (function () {
+    var modal = document.getElementById('reel-modal');
+    var frame = document.getElementById('reel-modal-frame');
+    if (!modal || !frame) return;
+    var lastFocus = null;
+
+    var openReel = function (url, label) {
       var src = url.replace(/\/+$/, '') + '/embed';
+      var f = document.createElement('iframe');
+      f.src = src;
+      f.title = label || 'Reel de Instagram';
+      f.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture');
+      f.setAttribute('allowfullscreen', '');
+      f.setAttribute('scrolling', 'no');
+      frame.innerHTML = '';
+      frame.appendChild(f);
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lastFocus = document.activeElement;
+      var closeBtn = modal.querySelector('.reel-modal-close');
+      if (closeBtn) closeBtn.focus();
+    };
+    var closeReel = function () {
+      modal.hidden = true;
+      frame.innerHTML = '';
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
 
-      var frame = document.createElement('iframe');
-      frame.className = 'videocard-frame';
-      frame.src = src;
-      frame.loading = 'lazy';
-      frame.title = card.getAttribute('aria-label') || 'Video de Instagram';
-      frame.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share');
-      frame.setAttribute('allowfullscreen', '');
-      frame.setAttribute('scrolling', 'no');
-
-      var box = document.createElement('div');
-      box.className = 'videocard is-playing';
-      box.appendChild(frame);
-      card.replaceWith(box);
+    modal.addEventListener('click', function (e) {
+      if (e.target.hasAttribute('data-close')) closeReel();
     });
-  });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeReel();
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.videocard[data-url]'), function (card) {
+      card.addEventListener('click', function () {
+        var url = (card.getAttribute('data-url') || '').trim();
+        if (!url || url.indexOf('REEMPLAZAR') !== -1) return;
+        openReel(url, card.getAttribute('aria-label'));
+      });
+    });
+  })();
 
   /* --- Equipo: mostrar la foto sólo si el archivo existe ----------- */
   Array.prototype.forEach.call(document.querySelectorAll('.member-photo'), function (img) {
@@ -194,15 +216,22 @@
     var badge = document.getElementById('live-badge');
     var status = document.getElementById('live-status');
 
-    var esES = function (dateStr) {
-      try {
-        return new Date(dateStr).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
-      } catch (e) { return ''; }
-    };
     // Hora de Buenos Aires (UTC-3, sin horario de verano)
     var buenosAiresNow = function () {
       var d = new Date();
       return new Date(d.getTime() + d.getTimezoneOffset() * 60000 - 3 * 3600000);
+    };
+    var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    var ymdBA = function () {
+      var d = buenosAiresNow();
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    };
+    // "2026-09-04" -> "jueves 4/9"
+    var fmtAired = function (iso) {
+      var p = (iso || '').split('-');
+      if (p.length !== 3) return '';
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      return DIAS[d.getDay()] + ' ' + (+p[2]) + '/' + (+p[1]);
     };
     var enFranja = function () {
       var d = buenosAiresNow(), day = d.getDay(), h = d.getHours();
@@ -247,7 +276,9 @@
           frame.classList.add('is-live');
           if (status) { status.textContent = 'En vivo ahora'; status.classList.add('on'); }
         } else if (status) {
-          status.textContent = d.publishedAt ? ('Última emisión · ' + esES(d.publishedAt)) : 'Última emisión';
+          if (d.airedOn && d.airedOn === ymdBA()) status.textContent = 'Programa de hoy';
+          else if (d.airedOn) status.textContent = 'Emisión del ' + fmtAired(d.airedOn);
+          else status.textContent = 'Última emisión';
         }
       })
       .catch(fallback);

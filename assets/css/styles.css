@@ -317,41 +317,50 @@ section{padding:110px 0;}
 .brands-note a{color:var(--violet); font-weight:600; border-bottom:1px solid currentColor; padding-bottom:1px;}
 .brands-note a:hover{color:var(--violet-bright);}
 
-/* CASOS EN VIDEO -------------------------------------------------------- */
-.videos-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:20px;}
+/* CASOS EN VIDEO ------------------------------------------------------- */
+.videos-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(186px,1fr)); gap:14px;}
 .videocard{
-  position:relative; display:flex; flex-direction:column; justify-content:space-between;
-  gap:18px; width:100%; aspect-ratio:4/5; padding:22px;
-  border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  position:relative; width:100%; aspect-ratio:9/16; padding:16px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  border:1px solid var(--line); border-radius:16px; overflow:hidden;
   color:var(--paper); text-align:left; font:inherit; cursor:pointer;
   -webkit-appearance:none; appearance:none;
   background:
-    radial-gradient(120% 80% at 82% 0%, rgba(166,59,255,0.30), transparent 58%),
+    radial-gradient(85% 50% at 50% 38%, rgba(166,59,255,0.36), transparent 72%),
     linear-gradient(180deg, var(--ink-soft) 0%, #100e18 100%);
   transition:transform .18s ease, border-color .2s ease;
 }
-.videocard:hover{transform:translateY(-4px); border-color:rgba(245,241,232,0.30);}
+.videocard:hover{transform:translateY(-4px); border-color:rgba(245,241,232,0.3);}
 .videocard:focus-visible{outline:2px solid var(--violet); outline-offset:3px;}
-.vc-top{display:flex; flex-direction:column; gap:6px;}
-.vc-brand{font-family:'Baloo 2'; font-weight:800; font-size:1.55rem; line-height:1.05;}
-.vc-kind{font-size:0.8rem; color:var(--violet); font-weight:600;}
 .vc-play{
-  align-self:flex-start; width:60px; height:60px; border-radius:50%;
+  position:absolute; top:38%; left:50%; transform:translate(-50%,-50%);
+  width:52px; height:52px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  background:var(--violet); color:#fff;
-  box-shadow:0 12px 34px rgba(166,59,255,0.42);
+  background:var(--violet); color:#fff; box-shadow:0 12px 30px rgba(166,59,255,0.45);
   transition:transform .18s ease, background .2s ease;
 }
-.videocard:hover .vc-play{transform:scale(1.06); background:var(--violet-bright);}
-.vc-play svg{width:26px; height:26px; margin-left:3px;}
-.vc-hint{font-size:0.8rem; color:var(--slate);}
-.videocard.is-playing{
-  aspect-ratio:auto; padding:0; cursor:default; background:#000;
-  transform:none; border-color:var(--line);
+.videocard:hover .vc-play{transform:translate(-50%,-50%) scale(1.09); background:var(--violet-bright);}
+.vc-play svg{width:22px; height:22px; margin-left:2px;}
+.vc-meta{display:flex; flex-direction:column; gap:3px;}
+.vc-brand{font-family:'Baloo 2'; font-weight:800; font-size:1.12rem; line-height:1.12;}
+.vc-kind{font-size:0.74rem; color:var(--violet); font-weight:600;}
+@media (max-width:520px){ .videos-grid{grid-template-columns:1fr 1fr; gap:10px;} }
+
+/* MODAL DE REEL ------------------------------------------------------ */
+.reel-modal{position:fixed; inset:0; z-index:120; display:flex; align-items:center; justify-content:center; padding:24px;}
+.reel-modal[hidden]{display:none;}
+.reel-modal-backdrop{position:absolute; inset:0; background:rgba(6,6,8,0.86);}
+.reel-modal-box{position:relative; z-index:1; width:min(380px,92vw); height:min(86vh,680px);}
+.reel-modal-frame{width:100%; height:100%; border-radius:16px; overflow:hidden; background:#000;}
+.reel-modal-frame iframe{width:100%; height:100%; border:0; display:block;}
+.reel-modal-close{
+  position:absolute; top:-16px; right:-16px; z-index:2;
+  width:40px; height:40px; border-radius:50%; border:0; cursor:pointer;
+  background:var(--paper); color:var(--ink); font-size:1.6rem; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,0.5);
 }
-.videocard-frame{width:100%; height:clamp(520px, 82vh, 760px); border:0; display:block;}
-.videos-note{margin-top:22px; font-size:0.85rem; color:var(--slate); font-style:italic;}
-.videos-note code{font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:0.82em; color:var(--paper);}
+@media (max-width:460px){ .reel-modal-close{top:8px; right:8px;} }
 
 /* TESTIMONIOS (carrusel) ------------------------------------------------- */
 .qcarousel{position:relative;}
@@ -532,7 +541,6 @@ footer{padding:30px 0; text-align:center; font-size:0.82rem; color:#8a857b; back
   .wrap{padding:0 22px;}
   .brands{grid-template-columns:1fr;}
   .brand-tile{min-height:0; padding:32px 24px;}
-  .videos-grid{grid-template-columns:1fr;}
   .member{flex-basis:100%;}
   .stats .wrap{grid-template-columns:1fr;}
 }
