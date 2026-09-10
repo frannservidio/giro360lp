@@ -276,9 +276,13 @@
           frame.classList.add('is-live');
           if (status) { status.textContent = 'En vivo ahora'; status.classList.add('on'); }
         } else if (status) {
-          if (d.airedOn && d.airedOn === ymdBA()) status.textContent = 'Programa de hoy';
-          else if (d.airedOn) status.textContent = 'Emisión del ' + fmtAired(d.airedOn);
-          else status.textContent = 'Última emisión';
+          if (d.mode === 'upcoming' || (d.airedOn && d.airedOn === ymdBA())) {
+            status.textContent = enFranja() ? 'Programa de hoy' : 'Programa de hoy · estreno 16 h';
+          } else if (d.airedOn) {
+            status.textContent = 'Emisión del ' + fmtAired(d.airedOn);
+          } else {
+            status.textContent = 'Última emisión';
+          }
         }
       })
       .catch(fallback);
