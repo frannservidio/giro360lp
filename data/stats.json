@@ -1,0 +1,5 @@
+{
+  "instagramFollowers": 38000,
+  "updatedAt": "2026-09-22",
+  "_como_actualizar": "Cambiá instagramFollowers y updatedAt, guardá, y hacé git add/commit/push. La página lee este número solo y recalcula el texto (38 mil, 40,5 mil, 1,2 M, etc.). No hay forma automática de leerlo de Instagram (bloquea el scraping sin login), así que se actualiza a mano acá."
+}

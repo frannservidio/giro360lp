@@ -209,6 +209,33 @@
     });
   });
 
+  /* --- Seguidores de Instagram: se leen de data/stats.json ---------- */
+  /* Instagram bloquea leer el número directo de su web sin login, así que
+     no hay forma de "auto-actualizarlo" desde acá: lo más simple es que
+     alguien edite data/stats.json (un solo número) y haga push. Esta función
+     toma ese valor y arma el texto y el conteo animado solos. */
+  (function () {
+    var el = document.getElementById('stat-followers');
+    if (!el) return;
+    fetch('data/stats.json', { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var n = d && Number(d.instagramFollowers);
+        if (!n || !isFinite(n) || n <= 0) return;
+        var value, suffix;
+        if (n >= 1000000) { value = Math.round(n / 100000) / 10; suffix = ' M'; }
+        else if (n >= 1000) { value = Math.round(n / 100) / 10; suffix = ' mil'; }
+        else { value = n; suffix = ''; }
+        var dec = (value % 1 === 0) ? 0 : 1;
+        var numStr = (dec ? value.toFixed(1) : String(Math.round(value))).replace('.', ',');
+        el.textContent = numStr + (suffix ? ' ' + suffix.trim() : '');
+        el.setAttribute('data-count-to', String(value));
+        el.setAttribute('data-count-dec', String(dec));
+        el.setAttribute('data-count-suffix', suffix);
+      })
+      .catch(function () { /* si falla, queda el valor fijo que ya está en el HTML */ });
+  })();
+
   /* --- En vivo: transmisión de 0221comar / última emisión de Giro 360 --- */
   (function () {
     var frame = document.getElementById('live-frame');
@@ -276,8 +303,11 @@
           frame.classList.add('is-live');
           if (status) { status.textContent = 'En vivo ahora'; status.classList.add('on'); }
         } else if (status) {
-          if (d.mode === 'upcoming' || (d.airedOn && d.airedOn === ymdBA())) {
-            status.textContent = enFranja() ? 'Programa de hoy' : 'Programa de hoy · estreno 16 h';
+          if (d.airedOn && d.airedOn === ymdBA()) {
+            // Es de hoy: si todavía no llegó el horario, avisamos; si ya pasó
+            // (esté en vivo, recién terminado o ya publicado entero), no decimos
+            // "estreno 16 h" porque induce a error.
+            status.textContent = buenosAiresNow().getHours() < 16 ? 'Hoy a las 16 h' : 'Programa de hoy';
           } else if (d.airedOn) {
             status.textContent = 'Emisión del ' + fmtAired(d.airedOn);
           } else {
