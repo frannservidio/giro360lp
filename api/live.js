@@ -20,14 +20,17 @@
  */
 
 var SCHEDULE = {
-  '2026-09-04': 'q1V-Ma7f6qI',   // jueves  — ¿POR QUÉ los JÓVENES volvieron a TOMAR VINO?
-  '2026-09-08': 'QQpQDidn-9g'    // martes  — GIRO 360 con SOFI, THIAGO y FRAN
-  // '2026-09-11': 'XXXXXXXXXXX'  <- agregá acá el video de la próxima emisión
+  '2026-09-04': 'q1V-Ma7f6qI',   // (título "04/09/25"; no es martes/jueves, se conserva por historial)
+  '2026-09-08': 'QQpQDidn-9g',   // martes  — GIRO 360 con SOFI, THIAGO y FRAN
+  '2026-10-13': 'KnU4fkKVcSA',   // martes  — El PADRE JUANJO habla de la FE y SALADILLO (vivo 18:57-21:04 UTC)
+  '2026-10-15': 'GPidzBDVTzE',   // jueves  — ¡EXPLOTÓ TODO en ESTUDIANTES! (vivo 15/10 15:57-18:03 BA; subido el 16/10)
+  '2026-10-20': 'QG44oRTfoKg'    // martes  — estreno programado 16:00 BA (verificado 19/10, aún no emitido)
+  // '2026-10-22': 'XXXXXXXXXXX'  <- agregá acá el video de la próxima emisión
 };
 
 var CHANNEL_ID = 'UCWFylKzypM2c1aRt5SImiuQ'; // youtube.com/c/0221comar
 var MATCH = /giro\s*-?\s*360/i;
-var FALLBACK_VIDEO_ID = 'q1V-Ma7f6qI';
+var FALLBACK_VIDEO_ID = 'GPidzBDVTzE'; // último programa completo verificado (jueves 15/10/2026)
 var UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
 /* ---------- fechas (Buenos Aires, UTC-3) ---------- */
