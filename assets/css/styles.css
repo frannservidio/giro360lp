@@ -317,7 +317,8 @@ button.brand-tile{font:inherit; width:100%; cursor:pointer; -webkit-appearance:n
   filter:grayscale(1) contrast(1.25); mix-blend-mode:screen; opacity:0.78;
   transition:opacity .2s, transform .2s;
 }
-.brand-tile[data-tone="light"] .brand-logo{filter:grayscale(1) invert(1) contrast(1.7) brightness(0.95);}
+.brand-tile[data-tone="light"] .brand-logo{filter:grayscale(1) invert(1) contrast(2.3) brightness(0.9);}
+.brand-tile[data-shape="round"] .brand-logo{border-radius:50%;}
 .brand-tile:hover .brand-logo,
 .brand-tile:focus-visible .brand-logo{opacity:1; transform:scale(1.05);}
 /* nombre y tipo: sólo para lectores de pantalla cuando ya hay logo (el logo ya dice el nombre) */
@@ -329,6 +330,7 @@ button.brand-tile{font:inherit; width:100%; cursor:pointer; -webkit-appearance:n
   position:absolute; top:-2px; right:6px; background:var(--violet); color:#fff;
   font-size:0.66rem; font-weight:700; padding:3px 8px; border-radius:40px;
 }
+.brand-tile:not(.has-logo) .brand-play{position:static; margin-top:8px;}
 .brand-tile.has-reels:hover .brand-play{background:var(--violet-bright);}
 @media (max-width:520px){ .brands{grid-template-columns:repeat(3,1fr); gap:26px 10px;} }
 .brands-note{margin-top:22px; font-size:0.9rem; color:var(--slate);}
