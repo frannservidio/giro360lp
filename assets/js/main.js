@@ -31,9 +31,99 @@
   var onScroll = function () {
     if (!header) return;
     header.classList.toggle('scrolled', window.scrollY > 8);
+    var bar = document.getElementById('scroll-progress');
+    if (bar) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty('--p', max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : 0);
+    }
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* --- Animaciones: aparición escalonada y tilt de tarjetas ---------- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var groups = [
+      ['.segments', 90], ['.steps', 110], ['.plan', 120], ['.stats .wrap', 90],
+      ['.aud-figures', 90], ['.team', 90], ['.gallery', 90]
+    ];
+    var staggered = [];
+    groups.forEach(function (g) {
+      var box = document.querySelector(g[0]);
+      if (!box) return;
+      box.classList.remove('reveal');
+      var kids = Array.prototype.slice.call(box.children);
+      kids.forEach(function (k, i) {
+        k.classList.remove('reveal');
+        k.classList.add('stagger-item');
+        k.style.setProperty('--d', (i * g[1]) + 'ms');
+      });
+      staggered.push({ box: box, kids: kids, total: kids.length * g[1] + 800 });
+    });
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        sio.unobserve(en.target);
+        var s = staggered.filter(function (x) { return x.box === en.target; })[0];
+        if (s) playStagger(s);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    // al terminar se devuelven las transiciones propias de cada tarjeta (hover)
+    var playStagger = function (s) {
+      if (s.done) return;
+      s.done = true;
+      s.box.classList.add('stagger-in');
+      window.setTimeout(function () {
+        s.kids.forEach(function (k) { k.classList.remove('stagger-item'); k.style.removeProperty('--d'); });
+        s.box.classList.remove('stagger-in');
+      }, s.total);
+    };
+    staggered.forEach(function (s) { sio.observe(s.box); });
+    // red de seguridad: nunca dejar contenido oculto
+    window.setTimeout(function () { staggered.forEach(playStagger); }, 3500);
+
+    // muro de logos: cada logo entra con su retraso
+    var wall = document.querySelector('.brands');
+    if (wall) {
+      Array.prototype.forEach.call(wall.children, function (t, i) { t.style.setProperty('--d', (i * 55) + 'ms'); });
+      wall.classList.add('pre', 'anim');
+      var wallDone = false;
+      var playWall = function () {
+        if (wallDone) return;
+        wallDone = true;
+        wall.classList.remove('pre');
+        window.setTimeout(function () {
+          wall.classList.remove('anim');
+          Array.prototype.forEach.call(wall.children, function (t) { t.style.removeProperty('--d'); });
+        }, wall.children.length * 55 + 900);
+      };
+      var wio = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { wio.disconnect(); playWall(); }
+      }, { threshold: 0.1 });
+      wio.observe(wall);
+      window.setTimeout(playWall, 3500);
+    }
+  }
+
+  if (fineHover && !reduceMotion) {
+    Array.prototype.forEach.call(document.querySelectorAll('.segment, .format, .member'), function (card) {
+      card.addEventListener('mouseenter', function () { card.setAttribute('data-tilt', ''); });
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ry', ((px - 0.5) * 8).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - py) * 6).toFixed(2) + 'deg');
+        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
 
   /* --- Aparición de secciones al entrar en viewport ----------------- */
   var revealables = document.querySelectorAll('.reveal');

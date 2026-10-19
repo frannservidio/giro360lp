@@ -54,6 +54,15 @@
       setTimeout(function () { gsap.set(tlCards, { opacity: 1, y: 0 }); }, 3500);
     }
 
+    // Galería del programa: las fotos se mueven apenas dentro de su marco
+    Array.prototype.forEach.call(document.querySelectorAll('.gallery img'), function (img) {
+      gsap.set(img, { scale: 1.14 });
+      gsap.fromTo(img, { yPercent: -5 }, {
+        yPercent: 5, ease: 'none',
+        scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+
     // Parallax sutil en las manchas del hero
     gsap.to('.blob-y', { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to('.blob-v', { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });

@@ -281,8 +281,8 @@ section{padding:110px 0;}
   aspect-ratio:1/1; background:var(--ink-soft);
 }
 .gallery figure:first-child{grid-column:span 2; grid-row:span 2;}
-.gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;}
-.gallery figure:hover img{transform:scale(1.05);}
+.gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:filter .4s ease;}
+.gallery figure:hover img{filter:brightness(1.1);}
 @media (max-width:900px){
   .gallery{grid-template-columns:repeat(2,1fr);}
   .gallery figure:first-child{grid-column:span 2; grid-row:auto; aspect-ratio:16/10;}
@@ -538,4 +538,83 @@ footer{padding:30px 0; text-align:center; font-size:0.82rem; color:#8a857b; back
   .wrap{padding:0 22px;}
   .member{flex-basis:100%;}
   .stats .wrap{grid-template-columns:1fr;}
+}
+
+
+/* ==========================================================================
+   ANIMACIONES UX/UI  (todo respeta prefers-reduced-motion)
+   ========================================================================== */
+
+/* barra de progreso de lectura */
+.scroll-progress{
+  position:fixed; top:0; left:0; right:0; height:3px; z-index:70; pointer-events:none;
+  background:linear-gradient(90deg,var(--violet),var(--yellow));
+  transform-origin:0 50%; transform:scaleX(var(--p,0));
+}
+
+/* detalle bajo los títulos de sección */
+.section-head h2::after{
+  content:''; display:block; width:56px; height:4px; margin-top:16px; border-radius:4px;
+  background:linear-gradient(90deg,var(--violet),var(--yellow));
+}
+
+@media (prefers-reduced-motion:no-preference){
+  /* hero: zoom lento y entrada escalonada */
+  .hero-bg{animation:kenburns 28s ease-in-out infinite alternate; transform-origin:60% 40%;}
+  @keyframes kenburns{from{transform:scale(1);} to{transform:scale(1.1);}}
+  .js .hero-content > *{opacity:0; animation:riseIn .85s cubic-bezier(.2,.7,.2,1) forwards;}
+  .hero-content > *:nth-child(1){animation-delay:.10s;}
+  .hero-content > *:nth-child(2){animation-delay:.25s;}
+  .hero-content > *:nth-child(3){animation-delay:.42s;}
+  .hero-content > *:nth-child(4){animation-delay:.58s;}
+  @keyframes riseIn{from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:none;}}
+
+  /* subrayado de los títulos que "se dibuja" al aparecer */
+  .js .section-head.reveal h2::after{width:0; transition:width .9s .25s cubic-bezier(.2,.7,.2,1);}
+  .js .section-head.reveal.is-visible h2::after{width:56px;}
+
+  /* aparición escalonada de grillas (la activa main.js) */
+  .js .stagger-item{
+    opacity:0; transform:translateY(22px);
+    transition:opacity .6s ease var(--d,0ms), transform .65s cubic-bezier(.2,.7,.2,1) var(--d,0ms);
+  }
+  .js .stagger-in .stagger-item{opacity:1; transform:none;}
+
+  /* muro de logos: sólo el logo (animar la tarjeta rompería el mezclado con el fondo) */
+  .js .brands.pre .brand-logo{opacity:0; transform:translateY(12px) scale(0.94);}
+  .js .brands.pre .brand-tile:not(.has-logo) .name{opacity:0;}
+  .brands.anim .brand-logo, .brands.anim .brand-tile .name{
+    transition:opacity .7s ease var(--d,0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--d,0ms);
+  }
+
+  /* botones: brillo al pasar y feedback al apretar */
+  .btn, .nav-cta{position:relative; overflow:hidden;}
+  .btn-primary::after, .nav-cta::after{
+    content:''; position:absolute; top:0; left:-130%; width:55%; height:100%; pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,0.35),transparent);
+    transform:skewX(-20deg); transition:left .7s ease;
+  }
+  .btn-primary:hover::after, .nav-cta:hover::after{left:150%;}
+  .btn:active, .nav-cta:active{transform:scale(0.97);}
+
+  /* modal de reels: entra con un pop */
+  .reel-modal:not([hidden]) .reel-modal-backdrop{animation:fadeIn .25s ease;}
+  .reel-modal:not([hidden]) .reel-modal-box{animation:popIn .32s cubic-bezier(.2,.8,.2,1);}
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+  @keyframes popIn{from{opacity:0; transform:translateY(18px) scale(0.96);} to{opacity:1; transform:none;}}
+}
+
+/* inclinación 3D + brillo que sigue al mouse en las tarjetas (la activa main.js) */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .segment[data-tilt], .format[data-tilt], .member[data-tilt]{
+    position:relative;
+    transform:perspective(800px) translateY(var(--ty,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+    transition:transform .25s ease-out, border-color .2s;
+  }
+  .segment[data-tilt]:hover, .format[data-tilt]:hover, .member[data-tilt]:hover{--ty:-4px;}
+  .segment[data-tilt]::after, .format[data-tilt]::after, .member[data-tilt]::after{
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .25s;
+    background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(166,59,255,0.16), transparent 62%);
+  }
+  .segment[data-tilt]:hover::after, .format[data-tilt]:hover::after, .member[data-tilt]:hover::after{opacity:1;}
 }
