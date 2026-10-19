@@ -55,47 +55,65 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* --- Casos en video: abrir el reel en un modal -------------------- */
+  /* --- Marcas: abrir sus reels en un modal (con navegación) --------- */
   (function () {
     var modal = document.getElementById('reel-modal');
     var frame = document.getElementById('reel-modal-frame');
     if (!modal || !frame) return;
-    var lastFocus = null;
+    var bar = modal.querySelector('.reel-modal-bar');
+    var cap = document.getElementById('reel-cap');
+    var prev = document.getElementById('reel-prev');
+    var next = document.getElementById('reel-next');
+    var lastFocus = null, list = [], idx = 0, brand = '';
 
-    var openReel = function (url, label) {
-      var src = url.replace(/\/+$/, '') + '/embed';
+    var show = function () {
       var f = document.createElement('iframe');
-      f.src = src;
-      f.title = label || 'Reel de Instagram';
+      f.src = 'https://www.instagram.com/reel/' + list[idx] + '/embed';
+      f.title = 'Reel de ' + brand;
       f.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture');
       f.setAttribute('allowfullscreen', '');
       f.setAttribute('scrolling', 'no');
       frame.innerHTML = '';
       frame.appendChild(f);
+      cap.textContent = brand + (list.length > 1 ? ' · ' + (idx + 1) + ' de ' + list.length : '');
+      if (list.length > 1) bar.removeAttribute('data-single'); else bar.setAttribute('data-single', '');
+    };
+    var openReels = function (codes, name) {
+      list = codes; idx = 0; brand = name;
+      show();
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
       lastFocus = document.activeElement;
       var closeBtn = modal.querySelector('.reel-modal-close');
       if (closeBtn) closeBtn.focus();
     };
-    var closeReel = function () {
+    var closeReels = function () {
       modal.hidden = true;
       frame.innerHTML = '';
       document.body.style.overflow = '';
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     };
+    var go = function (d) {
+      if (list.length < 2) return;
+      idx = (idx + d + list.length) % list.length;
+      show();
+    };
 
     modal.addEventListener('click', function (e) {
-      if (e.target.hasAttribute('data-close')) closeReel();
+      if (e.target.hasAttribute('data-close')) closeReels();
     });
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !modal.hidden) closeReel();
+      if (modal.hidden) return;
+      if (e.key === 'Escape') closeReels();
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight') go(1);
     });
-    Array.prototype.forEach.call(document.querySelectorAll('.videocard[data-url]'), function (card) {
-      card.addEventListener('click', function () {
-        var url = (card.getAttribute('data-url') || '').trim();
-        if (!url || url.indexOf('REEMPLAZAR') !== -1) return;
-        openReel(url, card.getAttribute('aria-label'));
+    Array.prototype.forEach.call(document.querySelectorAll('.brand-tile[data-reels]'), function (tile) {
+      tile.addEventListener('click', function () {
+        var codes = (tile.getAttribute('data-reels') || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        if (codes.length) openReels(codes, tile.getAttribute('data-brand') || '');
       });
     });
   })();

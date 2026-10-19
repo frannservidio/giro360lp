@@ -41,11 +41,9 @@ No necesita build:
 - **El programa en vivo** (`#programa`) — galería bento de `assets/img/programa/01–05.jpg`.
   Cambiá una foto reemplazando el archivo con el mismo nombre.
 - **Cómo trabajamos** (`#trabajamos`) — 3 pasos.
-- **Marcas** (`#marcas`) — 12 tiles. Poné el logo de cada marca en
-  `assets/img/marcas/` (nombres en su LEEME.txt). Sin archivo, la tarjeta muestra
-  solo el nombre. Cada logo va sobre un recuadro blanco.
-- **Casos en video** (`#casos`) — 15 reels de Instagram en fachada: la card carga
-  el reel embebido al hacer clic. `data-url` = link del reel sin `?stkn`.
+- **Marcas** (`#marcas`) — una sola grilla de logos. Las tarjetas con `data-reels="COD1,COD2"` abren
+  esos reels de Instagram en un modal (con flechas si son varios); sin `data-reels` es una tarjeta común.
+  Los logos van en `assets/img/marcas/` (sin archivo se ve solo el nombre).
 - **Testimonios** (`#testimonios`) — carrusel de mensajes. Flechas + swipe + auto-scroll
   al acercar el cursor a los bordes. Para sumar uno: duplicá un `.quote` dentro de `.qc-track`.
 - **Equipo** (`#equipo`) — 5 personas, fotos en `assets/img/equipo/`.

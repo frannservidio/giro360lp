@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=12">
+<link rel="stylesheet" href="assets/css/styles.css?v=13">
 <script>document.documentElement.classList.add('js');</script>
 
 <!-- Mejoras progresivas (si algún CDN falla, la página sigue funcionando) -->
@@ -42,7 +42,6 @@
       <a href="#segmentos">Segmentos</a>
       <a href="#trabajamos">Cómo Trabajamos</a>
       <a href="#marcas">Marcas</a>
-      <a href="#casos">Casos</a>
       <a href="#testimonios">Testimonios</a>
       <a href="#equipo">Equipo</a>
     </div>
@@ -70,7 +69,7 @@
   <div class="stats">
     <div class="wrap">
       <div class="stat"><div class="num" data-count-to="2023">2023</div><div class="lbl">En vivo desde</div></div>
-      <div class="stat"><div class="num" id="stat-followers" data-count-to="38" data-count-dec="0" data-count-suffix=" mil">38&nbsp;mil</div><div class="lbl">Seguidores en Instagram</div></div>
+      <div class="stat"><div class="num" id="stat-followers" data-count-to="38.9" data-count-dec="1" data-count-suffix=" mil">38,9&nbsp;mil</div><div class="lbl">Seguidores en Instagram</div></div>
       <div class="stat"><div class="num" data-count-to="4">4</div><div class="lbl">Plataformas de distribución</div></div>
       <div class="stat"><div class="num num--word">0221comar</div><div class="lbl">El medio donde sale en vivo</div></div>
     </div>
@@ -253,39 +252,54 @@
         <h2>Qué podés hacer con tu marca</h2>
         <p>No es solo publicidad en el vivo. Producimos contenido con tu marca dentro y fuera del estudio.</p>
       </div>
-      <div class="formats reveal">
-        <article class="format">
-          <span class="format-tag">En el programa</span>
-          <h3>Presencia en vivo</h3>
-          <p>Tu marca en la mesa: menciones, uso real del producto y conversación del equipo al aire, con su recorte en redes.</p>
-        </article>
-        <article class="format">
-          <span class="format-tag">En el programa</span>
-          <h3>Segmento presentado por tu marca</h3>
-          <p>Giro Tecnológico, Polémico o Musical con tu marca como sponsor del bloque, emisión tras emisión.</p>
-        </article>
-        <article class="format">
-          <span class="format-tag">En tu local</span>
-          <h3>Rodaje en el lugar</h3>
-          <p>Vamos con las cámaras a tu local, mostramos lo que hacés y la historia detrás, con la impronta y el humor del programa.</p>
-        </article>
-        <article class="format">
-          <span class="format-tag">En la calle</span>
-          <h3>Activación en la vía pública</h3>
-          <p>Salimos a la calle con tu marca: dinámicas, encuestas, sorteos y contenido espontáneo con la gente.</p>
-        </article>
-        <article class="format">
-          <span class="format-tag">Contenido</span>
-          <h3>Pieza dedicada + distribución</h3>
-          <p>Un video pensado para tu marca, editado y publicado en Instagram, TikTok, YouTube y X.</p>
-        </article>
-        <article class="format">
-          <span class="format-tag">Eventos</span>
-          <h3>Cobertura de tu evento</h3>
-          <p>Estamos en tu evento grabando y sacamos contenido para tus redes y las nuestras.</p>
-        </article>
+      <div class="plan reveal">
+        <div class="plan-col">
+          <div class="plan-head"><span class="plan-n">1</span><div><h3>En el programa</h3><p>Martes y jueves, en vivo y en YouTube</p></div></div>
+          <div class="plan-cards">
+            <article class="format">
+              <span class="format-tag">En vivo</span>
+              <h3>Presencia en vivo</h3>
+              <p>Tu marca en la mesa: menciones, uso real del producto y conversación del equipo al aire, con su recorte en redes.</p>
+            </article>
+            <article class="format">
+              <span class="format-tag">En vivo</span>
+              <h3>Segmento presentado por tu marca</h3>
+              <p>Giro Tecnológico, Polémico o Musical con tu marca como sponsor del bloque, emisión tras emisión.</p>
+            </article>
+          </div>
+        </div>
+        <div class="plan-col">
+          <div class="plan-head"><span class="plan-n">2</span><div><h3>En redes</h3><p>Instagram, TikTok, YouTube y X</p></div></div>
+          <div class="plan-cards">
+            <article class="format">
+              <span class="format-tag">Contenido</span>
+              <h3>Pieza dedicada + distribución</h3>
+              <p>Un video pensado para tu marca, editado y publicado en nuestras cuentas, con tu @ y el de la colaboración.</p>
+            </article>
+          </div>
+        </div>
+        <div class="plan-col">
+          <div class="plan-head"><span class="plan-n">3</span><div><h3>Fuera del estudio</h3><p>Salimos a donde está tu marca</p></div></div>
+          <div class="plan-cards">
+            <article class="format">
+              <span class="format-tag">En tu local</span>
+              <h3>Rodaje en el lugar</h3>
+              <p>Vamos con las cámaras a tu local, mostramos lo que hacés y la historia detrás, con la impronta y el humor del programa.</p>
+            </article>
+            <article class="format">
+              <span class="format-tag">En la calle</span>
+              <h3>Activación en la vía pública</h3>
+              <p>Salimos a la calle con tu marca: dinámicas, encuestas, sorteos y contenido espontáneo con la gente.</p>
+            </article>
+            <article class="format">
+              <span class="format-tag">Eventos</span>
+              <h3>Cobertura de tu evento</h3>
+              <p>Estamos en tu evento grabando y sacamos contenido para tus redes y las nuestras.</p>
+            </article>
+          </div>
+        </div>
       </div>
-      <p class="brands-note">Combinables entre sí. <a href="#contacto">Te armamos la propuesta a medida.</a></p>
+      <p class="brands-note">Se combinan en un plan mensual a medida. <a href="#contacto">Pedinos la propuesta con formatos y precios.</a></p>
     </div>
   </section>
 
@@ -321,107 +335,33 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2>Marcas que confían en nosotros</h2>
-        <p>Más de 14 marcas ya integraron su presencia en Giro 360.</p>
+        <p>Más de 14 marcas ya integraron su presencia en Giro 360. Tocá las que tienen &#9654; para ver lo que hicimos juntos.</p>
       </div>
-    </div>
-    <div class="wrap">
-      <!-- Los logos van en assets/img/marcas/ (ver LEEME.txt). Sin archivo, la tarjeta
-           muestra solo el nombre. Para sumar una marca: duplicá un .brand-tile. -->
+      <!-- Una sola grilla: logo + contenido. Las tarjetas con data-reels abren los reels de Instagram
+           (códigos separados por coma, los de https://www.instagram.com/reel/CODIGO/). Sin data-reels
+           es una tarjeta común. Los logos van en assets/img/marcas/ (sin archivo se ve solo el nombre). -->
       <div class="brands reveal">
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/redbull.jpg" alt="Red Bull"></span><span class="name">Red Bull</span><span class="kind">Activación</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/hotelsancarlos.jpg" alt="Hotel San Carlos"></span><span class="name">Hotel San Carlos</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/skala.png" alt="Skala Areco"></span><span class="name">Skala Areco</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/cerdorojo.jpg" alt="Cerdo Rojo Charcutería"></span><span class="name">Cerdo Rojo Charcutería</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/buffetero.jpg" alt="El Buffetero"></span><span class="name">El Buffetero</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/arcosdefutbol.jpg" alt="Arcos de Fútbol La Plata"></span><span class="name">Arcos de Fútbol La Plata</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/maxikiosco44.png" alt="Punto 44"></span><span class="name">Punto 44</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/gaamdrako.jpg" alt="Gaam Drako"></span><span class="name">Gaam Drako</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/nomadecrew.jpg" alt="Nómade Crew"></span><span class="name">Nómade Crew</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/silvershowroom.jpg" alt="The Silver Showroom"></span><span class="name">The Silver Showroom</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/laplenafiesta.jpg" alt="La Plena Fiesta"></span><span class="name">La Plena Fiesta</span><span class="kind">Evento</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/floydpool.jpg" alt="Floyd Pool"></span><span class="name">Floyd Pool</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/bordelands.jpg" alt="Bordelands"></span><span class="name">Bordelands</span><span class="kind">Colaboración</span></div>
-        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/likeiphone.png" alt="Like iPhone"></span><span class="name">Like iPhone</span><span class="kind">Colaboración</span></div>
+        <button class="brand-tile has-reels" type="button" data-brand="Red Bull" data-reels="DY92ENTqoj9,DYcuMSiKHQC" aria-label="Ver el contenido de Red Bull en Giro 360 (2 reels)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/redbull.jpg" alt=""></span><span class="name">Red Bull</span><span class="kind">Activación</span><span class="brand-play" aria-hidden="true">&#9654; 2 reels</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Hotel San Carlos" data-reels="Dczom56KTI3" aria-label="Ver el contenido de Hotel San Carlos en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/hotelsancarlos.jpg" alt=""></span><span class="name">Hotel San Carlos</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Skala Areco" data-reels="Dc9c6YPKFV0" aria-label="Ver el contenido de Skala Areco en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/skala.png" alt=""></span><span class="name">Skala Areco</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Cerdo Rojo Charcutería" data-reels="Dc64YJLqP1i" aria-label="Ver el contenido de Cerdo Rojo Charcutería en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/cerdorojo.jpg" alt=""></span><span class="name">Cerdo Rojo Charcutería</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="El Buffetero" data-reels="Da4LszNKYVa" aria-label="Ver el contenido de El Buffetero en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/buffetero.jpg" alt=""></span><span class="name">El Buffetero</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Arcos de Fútbol La Plata" data-reels="DYNozCaqm1u" aria-label="Ver el contenido de Arcos de Fútbol La Plata en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/arcosdefutbol.jpg" alt=""></span><span class="name">Arcos de Fútbol La Plata</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Punto 44" data-reels="DXsglsBCink,DXsvtyfis39" aria-label="Ver el contenido de Punto 44 en Giro 360 (2 reels)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/maxikiosco44.png" alt=""></span><span class="name">Punto 44</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 2 reels</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Gaam Drako" data-reels="DS5w4K9CgDE" aria-label="Ver el contenido de Gaam Drako en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/gaamdrako.jpg" alt=""></span><span class="name">Gaam Drako</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Nómade Crew" data-reels="DSl6nA5CoqF" aria-label="Ver el contenido de Nómade Crew en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/nomadecrew.jpg" alt=""></span><span class="name">Nómade Crew</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="The Silver Showroom" data-reels="DOj-YAfgEvi" aria-label="Ver el contenido de The Silver Showroom en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/silvershowroom.jpg" alt=""></span><span class="name">The Silver Showroom</span><span class="kind">Colaboración</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="La Plena Fiesta" data-reels="DOT9tpKifX8" aria-label="Ver el contenido de La Plena Fiesta en Giro 360 (1 reel)"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/laplenafiesta.jpg" alt=""></span><span class="name">La Plena Fiesta</span><span class="kind">Evento</span><span class="brand-play" aria-hidden="true">&#9654; 1 reel</span></button>
+        <button class="brand-tile has-reels" type="button" data-brand="Párense de Manos III" data-reels="DSiiTU7Cjd1,DSibfauCk16" aria-label="Ver el contenido de Párense de Manos III en Giro 360 (2 reels)"><span class="name">Párense de Manos III</span><span class="kind">Evento</span><span class="brand-play" aria-hidden="true">&#9654; 2 reels</span></button>
+        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/floydpool.jpg" alt=""></span><span class="name">Floyd Pool</span><span class="kind">Colaboración</span></div>
+        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/bordelands.jpg" alt=""></span><span class="name">Bordelands</span><span class="kind">Colaboración</span></div>
+        <div class="brand-tile"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/img/marcas/likeiphone.png" alt=""></span><span class="name">Like iPhone</span><span class="kind">Colaboración</span></div>
       </div>
       <p class="brands-note">Y sumando. <a href="#contacto">¿Tu marca puede ser la próxima?</a></p>
     </div>
   </section>
 
-  <section id="casos">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <h2>Casos en video</h2>
-        <p>Contenido que produjimos para marcas, en el programa y en rodajes aparte. Tocá una card para ver el reel.</p>
-      </div>
-      <!-- Cada card abre el reel embebido al hacer clic (no carga nada antes).
-           Para sumar: duplicá un <button class="videocard"> y pegá el link del reel
-           (sin el ?stkn=...) en data-url. -->
-      <div class="videos-grid reveal">
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/Dc9c6YPKFV0/" aria-label="Ver reel: Skala Areco en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Skala Areco</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/Dc64YJLqP1i/" aria-label="Ver reel: Cerdo Rojo Charcutería en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Cerdo Rojo Charcutería</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/Dczom56KTI3/" aria-label="Ver reel: Hotel San Carlos en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Hotel San Carlos</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/Da4LszNKYVa/" aria-label="Ver reel: El Buffetero en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">El Buffetero</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DY92ENTqoj9/" aria-label="Ver reel: activación Red Bull en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Red Bull</span><span class="vc-kind">Activación</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DYcuMSiKHQC/" aria-label="Ver reel: activación Red Bull en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Red Bull</span><span class="vc-kind">Activación</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DYNozCaqm1u/" aria-label="Ver reel: Arcos de Fútbol La Plata en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Arcos de Fútbol La Plata</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DXsglsBCink/" aria-label="Ver reel: Punto 44 en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Punto 44</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DXsvtyfis39/" aria-label="Ver reel: Punto 44 en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Punto 44</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DS5w4K9CgDE/" aria-label="Ver reel: Gaam Drako en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Gaam Drako</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DSl6nA5CoqF/" aria-label="Ver reel: Nómade Crew en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Nómade Crew</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DSiiTU7Cjd1/" aria-label="Ver reel: Parense de Manos III en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Parense de Manos III</span><span class="vc-kind">Evento</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DSibfauCk16/" aria-label="Ver reel: Parense de Manos III en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">Parense de Manos III</span><span class="vc-kind">Evento</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DOj-YAfgEvi/" aria-label="Ver reel: The Silver Showroom en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">The Silver Showroom</span><span class="vc-kind">Colaboración</span></span>
-        </button>
-        <button class="videocard" type="button" data-url="https://www.instagram.com/reel/DOT9tpKifX8/" aria-label="Ver reel: La Plena Fiesta en Giro 360">
-          <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vc-meta"><span class="vc-brand">La Plena Fiesta</span><span class="vc-kind">Evento</span></span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonios" class="band">
+  <section id="testimonios">
     <div class="wrap">
       <div class="section-head reveal">
         <h2>Lo que dicen las marcas</h2>
@@ -532,7 +472,7 @@
     </div>
   </section>
 
-  <section id="equipo">
+  <section id="equipo" class="band">
     <div class="wrap">
       <div class="section-head reveal">
         <h2>Equipo</h2>
@@ -643,10 +583,15 @@
   <div class="reel-modal-box" role="dialog" aria-modal="true" aria-label="Reel de Instagram">
     <button class="reel-modal-close" type="button" data-close aria-label="Cerrar">&times;</button>
     <div class="reel-modal-frame" id="reel-modal-frame"></div>
+    <div class="reel-modal-bar">
+      <button class="reel-nav" id="reel-prev" type="button" aria-label="Reel anterior">&#8249;</button>
+      <span class="reel-modal-cap" id="reel-cap"></span>
+      <button class="reel-nav" id="reel-next" type="button" aria-label="Reel siguiente">&#8250;</button>
+    </div>
   </div>
 </div>
 
-<script src="assets/js/main.js?v=8" defer></script>
+<script src="assets/js/main.js?v=9" defer></script>
 <script src="assets/js/enhance.js?v=3" defer></script>
 </body>
 </html>
