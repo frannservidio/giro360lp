@@ -9,3 +9,5 @@ Los archivos están renombrados a un slug fijo (el que usa index.html):
 Cada logo se muestra sobre un recuadro blanco. Si borrás un archivo, esa
 tarjeta vuelve a mostrar solo el nombre en texto (no se rompe nada).
 Para cambiar un logo: reemplazá el archivo respetando el nombre exacto.
+
+Agregados: angelani.png, gaia.png (sin reels todavía: se les suma data-reels="CODIGO" en index.html).
